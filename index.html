@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/proj4.js"></script>
+        <script src="js/proj4leaflet.js"></script>
+        <script src="data/OAXACASIMP_0.js"></script>
+        <script src="data/REASFORESTALES2_1.js"></script>
+        <script src="data/REASFORESTALES_2.js"></script>
+        <script src="data/ESTADODEOAXACA_3.js"></script>
+        <script src="data/ZONASAGRCOLAS_4.js"></script>
+        <script src="data/ZONAURBANA_5.js"></script>
+        <script>
+        var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs', {
+            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
+        });
+        var map = L.map('map', {
+            crs: crs,
+            continuousWorld: false,
+            worldCopyJump: false, 
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[13.59890668644384,-100.48517491428791],[21.27203941668865,-91.48285171010974]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_OAXACASIMP_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_OAXACASIMP_0_0() {
+            return {
+                pane: 'pane_OAXACASIMP_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,145,52,0.8)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_OAXACASIMP_0');
+        map.getPane('pane_OAXACASIMP_0').style.zIndex = 400;
+        map.getPane('pane_OAXACASIMP_0').style['mix-blend-mode'] = 'normal';
+        var layer_OAXACASIMP_0 = new L.geoJson(json_OAXACASIMP_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_OAXACASIMP_0',
+            layerName: 'layer_OAXACASIMP_0',
+            pane: 'pane_OAXACASIMP_0',
+            onEachFeature: pop_OAXACASIMP_0,
+            style: style_OAXACASIMP_0_0,
+        });
+        bounds_group.addLayer(layer_OAXACASIMP_0);
+        map.addLayer(layer_OAXACASIMP_0);
+        function pop_REASFORESTALES2_1(feature, layer) {
+        }
+
+        function style_REASFORESTALES2_1_0() {
+            return {
+                pane: 'pane_REASFORESTALES2_1',
+                stroke: false, 
+                fill: false,
+                fillOpacity: 0,
+                fillColor: 'rgba(42,145,52,0.8)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_REASFORESTALES2_1');
+        map.getPane('pane_REASFORESTALES2_1').style.zIndex = 401;
+        map.getPane('pane_REASFORESTALES2_1').style['mix-blend-mode'] = 'normal';
+        var layer_REASFORESTALES2_1 = new L.geoJson(json_REASFORESTALES2_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_REASFORESTALES2_1',
+            layerName: 'layer_REASFORESTALES2_1',
+            pane: 'pane_REASFORESTALES2_1',
+            onEachFeature: pop_REASFORESTALES2_1,
+            style: style_REASFORESTALES2_1_0,
+        });
+        bounds_group.addLayer(layer_REASFORESTALES2_1);
+        map.addLayer(layer_REASFORESTALES2_1);
+        function pop_REASFORESTALES_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PERIMETER'] !== null ? autolinker.link(feature.properties['PERIMETER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_REASFORESTALES_2_0(feature) {
+            switch(String(feature.properties['q2wHide_GRUPO_FINA'])) {
+                case 'Bosque de coniferas distintas a Pinus':
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(174,218,123,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosque de encino':
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,186,111,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosque de pino':
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,145,52,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosque mesofilo de montana':
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(5,74,41,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Manejo agricola, pecuario y forestal (plantaciones)':
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,38,144,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_REASFORESTALES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,138,79,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_REASFORESTALES_2');
+        map.getPane('pane_REASFORESTALES_2').style.zIndex = 402;
+        map.getPane('pane_REASFORESTALES_2').style['mix-blend-mode'] = 'normal';
+        var layer_REASFORESTALES_2 = new L.geoJson(json_REASFORESTALES_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_REASFORESTALES_2',
+            layerName: 'layer_REASFORESTALES_2',
+            pane: 'pane_REASFORESTALES_2',
+            onEachFeature: pop_REASFORESTALES_2,
+            style: style_REASFORESTALES_2_0,
+        });
+        bounds_group.addLayer(layer_REASFORESTALES_2);
+        map.addLayer(layer_REASFORESTALES_2);
+        function pop_ESTADODEOAXACA_3(feature, layer) {
+        }
+
+        function style_ESTADODEOAXACA_3_0() {
+            return {
+                pane: 'pane_ESTADODEOAXACA_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ESTADODEOAXACA_3');
+        map.getPane('pane_ESTADODEOAXACA_3').style.zIndex = 403;
+        map.getPane('pane_ESTADODEOAXACA_3').style['mix-blend-mode'] = 'normal';
+        var layer_ESTADODEOAXACA_3 = new L.geoJson(json_ESTADODEOAXACA_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ESTADODEOAXACA_3',
+            layerName: 'layer_ESTADODEOAXACA_3',
+            pane: 'pane_ESTADODEOAXACA_3',
+            onEachFeature: pop_ESTADODEOAXACA_3,
+            style: style_ESTADODEOAXACA_3_0,
+        });
+        bounds_group.addLayer(layer_ESTADODEOAXACA_3);
+        map.addLayer(layer_ESTADODEOAXACA_3);
+        function pop_ZONASAGRCOLAS_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA'] !== null ? autolinker.link(feature.properties['AREA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PERIMETER'] !== null ? autolinker.link(feature.properties['PERIMETER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['USUEV250S2'] !== null ? autolinker.link(feature.properties['USUEV250S2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['USUEV250_1'] !== null ? autolinker.link(feature.properties['USUEV250_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FC'] !== null ? autolinker.link(feature.properties['FC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLAVEFOT'] !== null ? autolinker.link(feature.properties['CLAVEFOT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ENTIDAD'] !== null ? autolinker.link(feature.properties['ENTIDAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO'] !== null ? autolinker.link(feature.properties['TIPO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FISONOMIA'] !== null ? autolinker.link(feature.properties['FISONOMIA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VEG_SEC'] !== null ? autolinker.link(feature.properties['VEG_SEC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EROSION'] !== null ? autolinker.link(feature.properties['EROSION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CULT_PRI'] !== null ? autolinker.link(feature.properties['CULT_PRI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CULT_SEC'] !== null ? autolinker.link(feature.properties['CULT_SEC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CULT_TER'] !== null ? autolinker.link(feature.properties['CULT_TER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ZONASAGRCOLAS_4_0(feature) {
+            switch(String(feature.properties['TIPO'])) {
+                case 'riego':
+                    return {
+                pane: 'pane_ZONASAGRCOLAS_4',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,223,100,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'temporal':
+                    return {
+                pane: 'pane_ZONASAGRCOLAS_4',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,214,134,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_ZONASAGRCOLAS_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(105,120,216,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ZONASAGRCOLAS_4');
+        map.getPane('pane_ZONASAGRCOLAS_4').style.zIndex = 404;
+        map.getPane('pane_ZONASAGRCOLAS_4').style['mix-blend-mode'] = 'normal';
+        var layer_ZONASAGRCOLAS_4 = new L.geoJson(json_ZONASAGRCOLAS_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZONASAGRCOLAS_4',
+            layerName: 'layer_ZONASAGRCOLAS_4',
+            pane: 'pane_ZONASAGRCOLAS_4',
+            onEachFeature: pop_ZONASAGRCOLAS_4,
+            style: style_ZONASAGRCOLAS_4_0,
+        });
+        bounds_group.addLayer(layer_ZONASAGRCOLAS_4);
+        map.addLayer(layer_ZONASAGRCOLAS_4);
+        function pop_ZONAURBANA_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CVE_ENT'] !== null ? autolinker.link(feature.properties['CVE_ENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CVE_MUN'] !== null ? autolinker.link(feature.properties['CVE_MUN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CVE_LOC'] !== null ? autolinker.link(feature.properties['CVE_LOC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMLOC'] !== null ? autolinker.link(feature.properties['NOMLOC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO'] !== null ? autolinker.link(feature.properties['TIPO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CONDICION'] !== null ? autolinker.link(feature.properties['CONDICION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ZONAURBANA_5_0() {
+            return {
+                pane: 'pane_ZONAURBANA_5',
+                opacity: 1,
+                color: 'rgba(237,125,58,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,125,58,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ZONAURBANA_5');
+        map.getPane('pane_ZONAURBANA_5').style.zIndex = 405;
+        map.getPane('pane_ZONAURBANA_5').style['mix-blend-mode'] = 'normal';
+        var layer_ZONAURBANA_5 = new L.geoJson(json_ZONAURBANA_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZONAURBANA_5',
+            layerName: 'layer_ZONAURBANA_5',
+            pane: 'pane_ZONAURBANA_5',
+            onEachFeature: pop_ZONAURBANA_5,
+            style: style_ZONAURBANA_5_0,
+        });
+        bounds_group.addLayer(layer_ZONAURBANA_5);
+        map.addLayer(layer_ZONAURBANA_5);
+        map.on("zoomend", function(e) {
+            if (map.getZoom() <= 2 && map.getZoom() >= 1) {
+                map.addLayer(layer_OAXACASIMP_0);
+            } else if (map.getZoom() > 2 || map.getZoom() < 1) {
+                map.removeLayer(layer_OAXACASIMP_0);
+            }
+            if (map.getZoom() <= 8 && map.getZoom() >= 4) {
+                map.addLayer(layer_REASFORESTALES2_1);
+            } else if (map.getZoom() > 8 || map.getZoom() < 4) {
+                map.removeLayer(layer_REASFORESTALES2_1);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 3) {
+                map.addLayer(layer_REASFORESTALES_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 3) {
+                map.removeLayer(layer_REASFORESTALES_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 5) {
+                map.addLayer(layer_ZONASAGRCOLAS_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 5) {
+                map.removeLayer(layer_ZONASAGRCOLAS_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 5) {
+                map.addLayer(layer_ZONAURBANA_5);
+            } else if (map.getZoom() > 19 || map.getZoom() < 5) {
+                map.removeLayer(layer_ZONAURBANA_5);
+            }
+        });
+            if (map.getZoom() <= 2 && map.getZoom() >= 1) {
+                map.addLayer(layer_OAXACASIMP_0);
+            } else if (map.getZoom() > 2 || map.getZoom() < 1) {
+                map.removeLayer(layer_OAXACASIMP_0);
+            }
+            if (map.getZoom() <= 8 && map.getZoom() >= 4) {
+                map.addLayer(layer_REASFORESTALES2_1);
+            } else if (map.getZoom() > 8 || map.getZoom() < 4) {
+                map.removeLayer(layer_REASFORESTALES2_1);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 3) {
+                map.addLayer(layer_REASFORESTALES_2);
+            } else if (map.getZoom() > 19 || map.getZoom() < 3) {
+                map.removeLayer(layer_REASFORESTALES_2);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 5) {
+                map.addLayer(layer_ZONASAGRCOLAS_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 5) {
+                map.removeLayer(layer_ZONASAGRCOLAS_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 5) {
+                map.addLayer(layer_ZONAURBANA_5);
+            } else if (map.getZoom() > 19 || map.getZoom() < 5) {
+                map.removeLayer(layer_ZONAURBANA_5);
+            }
+            var abstract = new L.Control({'position':'bottomleft'});
+            abstract.onAdd = function (map) {
+                this._div = L.DomUtil.create('div',
+                'leaflet-control abstract');
+                this._div.id = 'abstract'
+                    this._div.setAttribute("onmouseenter", "abstract.show()");
+                    this._div.setAttribute("onmouseleave", "abstract.hide()");
+                    this.hide();
+                    return this._div;
+                };
+                abstract.hide = function () {
+                    this._div.classList.remove("abstractUncollapsed");
+                    this._div.classList.add("abstract");
+                    this._div.innerHTML = 'i'
+                }
+                abstract.show = function () {
+                    this._div.classList.remove("abstract");
+                    this._div.classList.add("abstractUncollapsed");
+                    this._div.innerHTML = 'En México, los bosques están amenazados. El cambio de uso de suelo reduce el territorio forestal y lo convierte a agrícola o urbano.<br /><br />Si logramos recuperar las parcelas que no son ni urbanas, ni agrícolas, ni forestales podemos poblar ese territorio de bosque joven capaz de traer una cultura de respeto al bosque, un incremento en neutralización de huella de carbono y un apoyo a la biodiversidad.';
+            };
+            abstract.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/ZONAURBANA_5.png" /> ZONA URBANA': layer_ZONAURBANA_5,'ZONAS AGRÍCOLAS<br /><table><tr><td style="text-align: center;"><img src="legend/ZONASAGRCOLAS_4_riego0.png" /></td><td>riego</td></tr><tr><td style="text-align: center;"><img src="legend/ZONASAGRCOLAS_4_temporal1.png" /></td><td>temporal</td></tr><tr><td style="text-align: center;"><img src="legend/ZONASAGRCOLAS_4_2.png" /></td><td></td></tr></table>': layer_ZONASAGRCOLAS_4,'<img src="legend/ESTADODEOAXACA_3.png" /> ESTADO DE OAXACA': layer_ESTADODEOAXACA_3,'ÁREAS FORESTALES<br /><table><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_BosquedeconiferasdistintasaPinus0.png" /></td><td>Bosque de coniferas distintas a Pinus</td></tr><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_Bosquedeencino1.png" /></td><td>Bosque de encino</td></tr><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_Bosquedepino2.png" /></td><td>Bosque de pino</td></tr><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_Bosquemesofilodemontana3.png" /></td><td>Bosque mesofilo de montana</td></tr><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_Manejoagricolapecuarioyforestalplantaciones4.png" /></td><td>Manejo agricola, pecuario y forestal (plantaciones)</td></tr><tr><td style="text-align: center;"><img src="legend/REASFORESTALES_2_5.png" /></td><td></td></tr></table>': layer_REASFORESTALES_2,'<img src="legend/REASFORESTALES2_1.png" /> ÁREAS FORESTALES2': layer_REASFORESTALES2_1,'<img src="legend/OAXACASIMP_0.png" /> OAXACA SIMP': layer_OAXACASIMP_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
